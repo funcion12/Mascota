@@ -1,15 +1,13 @@
 package mascota.usecase;
 
-import mascota.exception.ExceptionMascotaExiste;
+import mascota.exception.ExceptionMascotaYaExiste;
 import mascota.input.ICrearMascotaInput;
-import mascota.modelo.ESTADODESALUD;
 import mascota.modelo.Mascota;
-import mascota.modelo.TIPODEMASCOTA;
 import mascota.output.ICrearMascotaOutput;
 
 public class CrearMascotaUseCase implements ICrearMascotaInput {
 
-    private final ICrearMascotaOutput crearMascotaOutput;
+    ICrearMascotaOutput crearMascotaOutput;
 
     public CrearMascotaUseCase(ICrearMascotaOutput crearMascotaOutput) {
         this.crearMascotaOutput = crearMascotaOutput;
@@ -17,11 +15,8 @@ public class CrearMascotaUseCase implements ICrearMascotaInput {
 
     @Override
     public boolean crearMascota(Mascota mascota) {
-        if(mascota == null) return false;
-
-        if(crearMascotaOutput.existeMascota(mascota.getNombre(),mascota.getDuenio()))throw new ExceptionMascotaExiste("La mascota ya existe");
+        if(crearMascotaOutput.existe(mascota.getNombre())) throw new ExceptionMascotaYaExiste("Ya existe una mascota con ese nombre");
 
         return crearMascotaOutput.save(mascota);
     }
-
 }

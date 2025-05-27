@@ -1,56 +1,49 @@
-# Programación Avanzada I (Backend)
+# Examen Final - Programación Avanzada I
 ### Ing. y Lic. en Sistemas
+### Turno Mayo 2025
 
 ### Objetivos
-- Desarrollar endpoints que permitan el registro y consulta de la entidad Curso
+- Desarrollar endpoints que permitan el registro y consulta de la entidad Mascota
+- Implementar Frontend que consuma los endpoints desarrollados
 
+### Tiempo
+- 2 horas reloj
 ### Evaluacion
-- Fecha de Entrega: 13/05/2025
+- Se evaluará la versión del proyecto en el repositorio correspondiente, a la hora de finalización del examen, estimada para el día 08/05/2025 17:00
 - El proyecto debe compilar sin errores en cualquier entorno de programación en el que se abra
 - Todos los test unitarios deben pasar en verde
-- Cada funcionalidad debe tener su branch específica, la cual partirá desde el branch develop
-- Se evaluará cada funcionalidad a través de Pull Request (o Merge Request) del branch feature hacia develop
+- Se probará la funcionalidad desde el Frontend
 
 ### Punto de partida
-- Se proveerá el esquema base de un Backend, de manera que el alumno pueda construir los dos endpoints desde cero.
+- Se proveerá el esquema de Backend en blanco, donde el alumno tenrá que crear test y código fuente que cubra la consigna.
+- Prestar atención a los comentarios en el código
 
 ## Consigna
-#### Módulo Cursos
-_Se desea implementar un backend para un microservicio que permita registrar y consultar cursos._
+#### Módulo Veterinaria
+_Se desea implementar un backend con su respectivo frontend para un microservicio que permita registrar mascotas._
 
 #### Restricciones:
-- No puede existir dos Cursos con el mismo nombre
-- Todos los atributos de Curso son obligatorios
-- La fecha de cierre de inscripcion del Curso no puede ser inferior a la actual
-- El nivel puede tomar solo los valores [Inicial, Medio, Avanzado]
+- No puede existir dos Mascotas con el mismo nombre
+- El id debe ser un UUID generado por la lógica de dominio, y no por estrategia de base de datos
+- Todos los atributos de Mascota son obligatorios
+- La fecha de nacimiento de la mascota no puede ser superior a la actual
+- La talla de la mascota debe ser uno de los siguientes valores: GRANDE - MEDIANA - PEQUEÑA
 
 #### Funcionalidad
-- Crear Curso
-  - Endpoint: POST http://localhost:8080/cursos
+- Crear Mascota
+  - Endpoint: POST http://localhost:8080/mascotas
   - RequestBody:
     ```json
     {
-      "id": null,
-      "nombre": "Clean Architecture",
-      "fecha_cierre_inscripcion": "2023-03-01T10:00:00.000Z",
-      "nivel": "Inicial"
+      "id": "7e8ad860-716d-4b86-9643-430870caefe7",
+      "nombre": "Max",
+      "fecha_nacimiento": "2021-01-01T10:00:00.000Z",
+      "talla": "GRANDE"
     }
     ```
 
-- Buscar Cursos
-  - Endpoint: GET http://localhost:8080/cursos
-
-## Etapas
-
-### Etapa 1
-Creación de casos de uso que cubran la funcionalidad, aplicando patrones y principios de diseño SOLID
-
-**Deadline: 29/05/24**
-
-### Etapa 2
-Creación de infraestructura para persistir y endpoints para comunicarse con la aplicación
-
-**Deadline: 13/05/25**
+- Buscar Mascotas
+  - Endpoint: GET http://localhost:8080/mascotas
 
 #### Buenas prácticas y conceptos a considerar
 - La nomenclatura de paquetes será en minúsculas
@@ -58,7 +51,7 @@ Creación de infraestructura para persistir y endpoints para comunicarse con la 
 - La nomenclatura de métodos será en lowerCamelCase
 - La organización de paquetes será por modelo->aspecto, tanto a nivel src/main como a nivel src/test. Ejemplo:
   ```
-  cursos
+  mascotas
   └─ excepciones
   └─ modelo
   └─ repositorio
